@@ -21,37 +21,40 @@ function changeContent(valor) {
                 i = 1;
                 comidas = json[i].products;
                 Concomidas(comidas);
-                info.innerHTML += titulo + ini + total + fin;
+                info.innerHTML = titulo + ini + total + fin;
             }
             else if (valor == "Salads") {
                 i = 2;
                 comidas = json[i].products;
                 Concomidas(comidas);
-                info.innerHTML += titulo + ini + total + fin;
+                info.innerHTML = titulo + ini + total + fin;
             }
             else if (valor == "Burguers") {
                 i = 0;
                 comidas = json[i].products;
                 Concomidas(comidas);
-                info.innerHTML += titulo + ini + total + fin;
+                info.innerHTML = titulo + ini + total + fin;
             }
             else if (valor == "Desserts") {
                 i = 3;
                 comidas = json[i].products;
                 Concomidas(comidas);
-                info.innerHTML += titulo + ini + total + fin;
+                info.innerHTML = titulo + ini + total + fin;
             }
             else if (valor == "Drinks and Sides") {
                 i = 4;
                 comidas = json[i].products;
                 Concomidas(comidas);
-                info.innerHTML += titulo + ini + total + fin;
+                info.innerHTML = titulo + ini + total + fin;
+            }
+            else if (valor == "Order detail") {
+                info.innerHTML =titulo;
             }
         });
     console.log(fetch(url))
 }
 function Concomidas(comidas) {
-    info.innerHTML="";
+
     total="";
     for (let o of comidas) {
         let content = `<div class="card mb-3" style="min-width: 15rem;">\
@@ -94,7 +97,7 @@ p_drinks.addEventListener("click", () => {
     changeContent(valor)
 })
 const p_carrito = document.getElementById("carrito_but")
-p_drinks.addEventListener("click", () => {
-    valor = "Carrito";
+p_carrito.addEventListener("click", () => {
+    valor = "Order detail";
     changeContent(valor)
 })
