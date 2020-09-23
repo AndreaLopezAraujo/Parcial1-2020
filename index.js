@@ -4,10 +4,14 @@ url =
 const info = document.getElementById("info");
 valor = "Burguers";
 function changeContent(valor) {
-    info.innerHTML = "<h2> <hr>Burguers<hr></h2>"
+    info.innerHTML ="";
     fetch(url)
         .then((response) => response.json())
         .then((json) => {
+            let titulo=`<h2 align="center"><hr>${valor}<hr></h2>`;
+            let total="";
+            let ini= `<div class="card-deck">`;
+            let fin=`</div>`;
             let comidas;
             i = 0;
             if (valor == "Tacos") {
@@ -24,17 +28,18 @@ function changeContent(valor) {
             }
             comidas = json[i].products;
             for (let o of comidas) {
-                let content = `<div class="card">\
+                let content = `<div class="card mb-3" style="min-width: 15rem;">\
         <img src="${o["image"]}" class="card-img-top" alt="${o["name"]}">\
         <div class="card-body">\
           <h5 class="card-title">${o["name"]}</h5>\
           <p class="card-text">${o["description"]}</p>\
-          <p class="card-text">${o["price"]}</p>\
+          <p class="card-text">$${o["price"]}</p>\
           <button type="button" class="btn btn-dark">Add to car</button>
         </div>\
         </div>`;
-                info.innerHTML += content;
+                total += content;
             }
+            info.innerHTML+=titulo+ini+total+fin;
         });
     console.log(fetch(url))
 }
