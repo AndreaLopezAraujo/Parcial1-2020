@@ -5,9 +5,9 @@ const info = document.getElementById("info");
 const totalCarrito = document.getElementById("numero");
 let total = "";
 const carritoTotal = [];
-elementos = 1;
+elementos = 0;
 numero = 0;
-encontrado=false;
+encontrado = false;
 i = 0;
 valor = "Burguers";
 function changeContent(valor) {
@@ -51,7 +51,20 @@ function changeContent(valor) {
                 info.innerHTML = titulo + ini + total + fin;
             }
             else if (valor == "Order detail") {
-                info.innerHTML = titulo;
+                let tablaIn= `<table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Qty.</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Until Price</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead><tbody>`;
+                let tableFin=`</tbody>
+                </table>`;
+                recoCarrito();
+                info.innerHTML = titulo+tablaIn+total+tableFin;
             }
         });
     console.log(fetch(url))
@@ -72,21 +85,36 @@ function Concomidas(comidas) {
         total += content;
     }
 }
+function recoCarrito() {
+
+    total = "";
+    for (let o of carritoTotal) {
+        let content = `<tr>
+        <th>${o["Item"]}</th>
+        <td>${o["Qty"]}</td>
+        <td>${o["Description"]}</td>
+        <td>${o["Until"]}</td>
+        <td>${o["Amount"]}</td>
+      </tr>`;
+        total += content;
+    }
+}
 function Carrito(elmnt, name, price) {
     numero++;
     totalCarrito.innerHTML = numero + " items";
     if (numero > 1) {
         buscar(name);
-        if(!encontrado)
-        {
+        if (!encontrado) {
+            elementos++
             let cos = { "Item": elementos, "Qty": 1, "Description": name, "Until": price, "Amount": price };
-        carritoTotal.push(cos);
+            carritoTotal.push(cos);
         }
-        else{
-            encontrado=false;
+        else {
+            encontrado = false;
         }
     }
     else {
+        elementos++
         let cos = { "Item": elementos, "Qty": 1, "Description": name, "Until": price, "Amount": price };
         carritoTotal.push(cos);
     }
@@ -97,7 +125,7 @@ function buscar(name1) {
         if (o.Description == name1) {
             o.Qty++;
             o.Amount += o.Until;
-            encontrado=true;
+            encontrado = true;
         }
     }
 }
