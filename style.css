@@ -1,3 +1,13 @@
 h1{
     font-family: 'Satisfy', cursive;
 }
+.p{
+    font-size: medium;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+nav{
+    background-color: #343A3F;
+}
+.letra_blanca{
+    color: white;
+}
