@@ -4,7 +4,11 @@ url =
 const info = document.getElementById("info");
 const totalCarrito = document.getElementById("numero");
 let total = "";
+const carritoTotal = [];
+elementos = 1;
 numero = 0;
+encontrado=false;
+i = 0;
 valor = "Burguers";
 function changeContent(valor) {
     info.innerHTML = "";
@@ -16,7 +20,6 @@ function changeContent(valor) {
             let ini = `<div class="card-deck">`;
             let fin = `</div>`;
             let comidas;
-            i = 0;
             if (valor == "Tacos") {
                 i = 1;
                 comidas = json[i].products;
@@ -48,14 +51,14 @@ function changeContent(valor) {
                 info.innerHTML = titulo + ini + total + fin;
             }
             else if (valor == "Order detail") {
-                info.innerHTML =titulo;
+                info.innerHTML = titulo;
             }
         });
     console.log(fetch(url))
 }
 function Concomidas(comidas) {
 
-    total="";
+    total = "";
     for (let o of comidas) {
         let content = `<div class="card mb-3" style="min-width: 15rem;">\
 <img src="${o["image"]}" class="card-img-top" alt="${o["name"]}">\
@@ -63,10 +66,39 @@ function Concomidas(comidas) {
   <h5 class="card-title">${o["name"]}</h5>\
   <p class="card-text">${o["description"]}</p>\
   <p class="card-text">$${o["price"]}</p>\
-  <button type="button" class="btn btn-dark">Add to car</button>
+  <button type="button" class="btn btn-dark" id="${o["name"]}" onclick="Carrito(this,'${o["name"]}',${o["price"]})">Add to car</button>
 </div>\
 </div>`;
         total += content;
+    }
+}
+function Carrito(elmnt, name, price) {
+    numero++;
+    totalCarrito.innerHTML = numero + " items";
+    if (numero > 1) {
+        buscar(name);
+        if(!encontrado)
+        {
+            let cos = { "Item": elementos, "Qty": 1, "Description": name, "Until": price, "Amount": price };
+        carritoTotal.push(cos);
+        }
+        else{
+            encontrado=false;
+        }
+    }
+    else {
+        let cos = { "Item": elementos, "Qty": 1, "Description": name, "Until": price, "Amount": price };
+        carritoTotal.push(cos);
+    }
+    console.log(carritoTotal);
+}
+function buscar(name1) {
+    for (let o of carritoTotal) {
+        if (o.Description == name1) {
+            o.Qty++;
+            o.Amount += o.Until;
+            encontrado=true;
+        }
     }
 }
 changeContent(valor)
