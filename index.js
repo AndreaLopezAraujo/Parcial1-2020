@@ -4,7 +4,7 @@ url =
 const info = document.getElementById("info");
 const totalCarrito = document.getElementById("numero");
 let total = "";
-const carritoTotal = [];
+var carritoTotal = [];
 elementos = 0;
 numero = 0;
 encontrado = false;
@@ -65,7 +65,7 @@ function changeContent(valor) {
                 </table>`;
                 recoCarrito();
                 let botones = `<div class="float-right">
-                <button class="botonOscuro" onclick="Cancelar()">Cancel</button>
+                <button class="botonOscuro" data-toggle="modal" data-target="#exampleModal" >Cancel</button>
                 <button class="botonClaro" onclick="Confirmar()">Confirm order</button>
                 </div>`
                 info.innerHTML = titulo + tablaIn + total + tableFin + botones;
@@ -109,6 +109,16 @@ function Confirmar() {
         console.log(o);
     }
 }
+function Cancelar() {
+
+    while (carritoTotal.length > 0)
+        carritoTotal.pop();
+    console.log(carritoTotal);
+    numero = 0;
+    totalCarrito.innerHTML = numero + " items";
+    let titulo = `<h2 align="center"><hr>${valor}<hr></h2>`;
+    info.innerHTML = titulo;
+}
 function Carrito(elmnt, name, price) {
     numero++;
     totalCarrito.innerHTML = numero + " items";
@@ -138,19 +148,6 @@ function buscar(name1) {
             encontrado = true;
         }
     }
-}
-function Cancelar() {
-    var mensaje;
-    alert("Cancel order")
-    var opcion = prompt("Introduzca su nombre:", "Aner Barrena");
-
-    if (opcion == null || opcion == "") {
-        mensaje = "Has cancelado o introducido el nombre vacío"
-    ;
-    } else {
-        mensaje = "Hola " + opcion;
-    }
-    document.getElementById("ejemplo").innerHTML = mensaje;
 }
 changeContent(valor)
 

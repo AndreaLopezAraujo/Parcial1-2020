@@ -23,7 +23,7 @@
                 <h1>Restaurant & Lounge
                     <span class="float-right p">
                         <a href="#" id="carrito_but">
-                            <img src="carrito.png" alt="carrito" width="30"> 
+                            <img src="carrito.png" alt="carrito" width="30">
                         </a>
                         <div id="numero"></div>
                     </span>
@@ -57,6 +57,26 @@
             </section>
             <section id="info">
             </section>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cancel the order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure about cancel the order?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="botonClaro" data-dismiss="modal" onclick="Cancelar()">Yes, i want to cancel the order</button>
+                        <button type="button" class="botonOscuro" data-dismiss="modal">No, I want to continue adding products</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Optional JavaScript -->
