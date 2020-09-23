@@ -51,7 +51,7 @@ function changeContent(valor) {
                 info.innerHTML = titulo + ini + total + fin;
             }
             else if (valor == "Order detail") {
-                let tablaIn= `<table class="table">
+                let tablaIn = `<table class="table">
                 <thead>
                   <tr>
                     <th scope="col">Item</th>
@@ -61,10 +61,14 @@ function changeContent(valor) {
                     <th scope="col">Amount</th>
                   </tr>
                 </thead><tbody>`;
-                let tableFin=`</tbody>
+                let tableFin = `</tbody>
                 </table>`;
                 recoCarrito();
-                info.innerHTML = titulo+tablaIn+total+tableFin;
+                let botones = `<div class="float-right">
+                <button class="botonOscuro" onclick="Cancelar()">Cancel</button>
+                <button class="botonClaro" onclick="Confirmar()">Confirm order</button>
+                </div>`
+                info.innerHTML = titulo + tablaIn + total + tableFin + botones;
             }
         });
     console.log(fetch(url))
@@ -99,6 +103,12 @@ function recoCarrito() {
         total += content;
     }
 }
+function Confirmar() {
+
+    for (let o of carritoTotal) {
+        console.log(o);
+    }
+}
 function Carrito(elmnt, name, price) {
     numero++;
     totalCarrito.innerHTML = numero + " items";
@@ -128,6 +138,19 @@ function buscar(name1) {
             encontrado = true;
         }
     }
+}
+function Cancelar() {
+    var mensaje;
+    alert("Cancel order")
+    var opcion = prompt("Introduzca su nombre:", "Aner Barrena");
+
+    if (opcion == null || opcion == "") {
+        mensaje = "Has cancelado o introducido el nombre vacío"
+    ;
+    } else {
+        mensaje = "Hola " + opcion;
+    }
+    document.getElementById("ejemplo").innerHTML = mensaje;
 }
 changeContent(valor)
 

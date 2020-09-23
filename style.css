@@ -6,6 +6,9 @@ h1{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: black;
 }
-nav{
-    background-color: #343A3F;
+.botonClaro{
+    background-color: #F3E8DD;
+}
+.botonOscuro{
+    background-color: #FB575B;
 }
